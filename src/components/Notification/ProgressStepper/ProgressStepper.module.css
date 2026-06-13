@@ -1,0 +1,125 @@
+.stepperContainer {
+  margin: 1.5rem 0 2.5rem;
+  width: 100%;
+}
+
+.stepperList {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Horizontal line behind the steps */
+.stepperList::before {
+  content: '';
+  position: absolute;
+  top: 18px; /* half of the circle's height */
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--border-color);
+  z-index: 1;
+}
+
+.progressBar {
+  position: absolute;
+  top: 18px;
+  left: 0;
+  height: 3px;
+  background-color: var(--accent-red);
+  box-shadow: var(--shadow-red-glow);
+  z-index: 1;
+  transition: width var(--transition-normal);
+}
+
+.stepItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  flex: 1;
+}
+
+.stepCircle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: var(--bg-tertiary);
+  border: 3px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  transition: all var(--transition-normal);
+}
+
+.activeCircle {
+  border-color: var(--accent-red);
+  background-color: var(--bg-primary);
+  color: var(--accent-red);
+  box-shadow: var(--shadow-red-glow);
+}
+
+.completedCircle {
+  border-color: var(--accent-red);
+  background-color: var(--accent-red);
+  color: white;
+}
+
+.stepLabel {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+  transition: color var(--transition-normal);
+  text-align: center;
+}
+
+.activeLabel {
+  color: var(--text-primary);
+}
+
+.completedLabel {
+  color: var(--text-primary);
+}
+
+/* Mobile responsive view: simplified progress tracking to avoid layout breaking */
+.mobileProgress {
+  display: none;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.mobileBarContainer {
+  height: 6px;
+  background-color: var(--border-color);
+  border-radius: var(--radius-full);
+  margin-top: 0.5rem;
+  overflow: hidden;
+}
+
+.mobileBarFill {
+  height: 100%;
+  background-color: var(--accent-red);
+  box-shadow: var(--shadow-red-glow);
+  transition: width var(--transition-normal);
+}
+
+@media (max-width: 640px) {
+  .stepperList {
+    display: none;
+  }
+  
+  .mobileProgress {
+    display: block;
+  }
+}

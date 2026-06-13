@@ -1,0 +1,79 @@
+.pageWrapper {
+  padding: 3rem 0;
+  max-width: 700px;
+  margin: 0 auto;
+  animation: fadeIn var(--transition-normal) forwards;
+}
+
+.titleBlock {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 2rem;
+  font-weight: 850;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+/* Developer test panel */
+.testPanel {
+  background-color: rgba(229, 62, 62, 0.05);
+  border: 1px dashed rgba(229, 62, 62, 0.3);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.toggleLabel {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  user-select: none;
+  font-weight: 500;
+}
+
+.checkbox {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: var(--accent-red);
+}
+
+.actionFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border-color);
+  padding-top: 2rem;
+  gap: 1rem;
+  flex-direction: column;
+}
+
+@media (min-width: 480px) {
+  .actionFooter {
+    flex-direction: row;
+  }
+}
+
+/* Modal text styles */
+.modalText {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.modalHighlight {
+  color: var(--accent-red);
+  font-weight: 700;
+}
