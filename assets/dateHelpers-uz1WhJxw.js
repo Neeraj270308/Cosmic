@@ -1,0 +1,1 @@
+var e=e=>e?new Date(e).toLocaleDateString(`en-US`,{weekday:`long`,year:`numeric`,month:`short`,day:`numeric`}):``;export{e as t};
