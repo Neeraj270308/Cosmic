@@ -1,6 +1,7 @@
 import React, { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { RouteGuard } from './RouteGuard';
+import ProtectedRoute from '../components/ProtectedRoute/ProtectedRoute';
 import LoadingSpinner from '../components/LoadingSpinner/LoadingSpinner';
 
 // Lazy loading all pages for optimal code splitting
@@ -17,6 +18,7 @@ const SelectTime = lazy(() => import('../pages/SelectTime/SelectTime'));
 const Summary = lazy(() => import('../pages/Summary/Summary'));
 const Status = lazy(() => import('../pages/Status/Status'));
 const Appointments = lazy(() => import('../pages/Appointments/Appointments'));
+const Auth = lazy(() => import('../pages/Auth/Auth'));
 const NotFound = lazy(() => import('../pages/NotFound/NotFound'));
 
 export const AppRoutes = () => {
@@ -33,7 +35,15 @@ export const AppRoutes = () => {
         </Route>
 
         <Route path="/gallery" element={<Gallery />} />
-        <Route path="/appointments" element={<Appointments />} />
+        <Route path="/login" element={<Auth />} />
+        <Route 
+          path="/appointments" 
+          element={
+            <ProtectedRoute>
+              <Appointments />
+            </ProtectedRoute>
+          } 
+        />
         
         {/* Booking Wizard Steps with Route Guards */}
         <Route 

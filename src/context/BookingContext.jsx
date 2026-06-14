@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState, useCallback, useEffect } fr
 import emailjs from '@emailjs/browser';
 import { mockSubmitBooking } from '../services/bookingApi';
 import { validateCustomerForm } from '../utils/validation';
+import { useAuth } from './AuthContext';
 
 const BookingContext = createContext();
 
@@ -16,6 +17,7 @@ const initialCustomerDetails = {
 const LOCAL_STORAGE_KEY = 'cosmic_cruisers_appointments';
 
 export const BookingProvider = ({ children }) => {
+  const { user } = useAuth();
   const [selectedService, setSelectedService] = useState(null);
   const [selectedBike, setSelectedBike] = useState(null);
   const [customBikeName, setCustomBikeName] = useState('');
@@ -49,6 +51,17 @@ export const BookingProvider = ({ children }) => {
       console.error('Failed to load appointments from localStorage', e);
     }
   }, []);
+
+  // Automatically prefill customer Name and Email if user is authenticated
+  useEffect(() => {
+    if (user) {
+      setCustomerDetails(prev => ({
+        ...prev,
+        name: prev.name || user.name,
+        email: prev.email || user.email
+      }));
+    }
+  }, [user]);
 
   // Save history helper
 const saveAppointments = (list) => {
@@ -290,7 +303,7 @@ saveAppointments(updatedList);
     setSelectedBike(null);
     setCustomBikeName('');
     setIsCustomBike(false);
-    setCustomerDetails(initialCustomerDetails);
+    setCustomerDetails(user ? { ...initialCustomerDetails, name: user.name, email: user.email } : initialCustomerDetails);
     setVehicleReg('');
     setOdometer('');
     setNotes('');
@@ -299,7 +312,7 @@ saveAppointments(updatedList);
     setBookingStatus('idle');
     setBookingReference(null);
     setErrorMessage(null);
-  }, []);
+  }, [user]);
 
  const contextValue = {
   selectedService,

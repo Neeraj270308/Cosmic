@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { Bike, Menu, X } from 'lucide-react';
+import { useAuth } from '../../context/AuthContext';
 import styles from './Navbar.module.css';
 
 /**
@@ -9,6 +10,7 @@ import styles from './Navbar.module.css';
  */
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { user, logout } = useAuth();
 
   const toggleMenu = useCallback(() => {
     setIsOpen(prev => !prev);
@@ -59,6 +61,30 @@ const Navbar = () => {
           >
             My Appointments
           </NavLink>
+
+          {user ? (
+            <div className={styles.userSection}>
+              <span className={styles.userGreeting}>
+                Hello, <span>{user.name.split(' ')[0]}</span>
+              </span>
+              <button 
+                type="button" 
+                onClick={logout} 
+                className={styles.logoutBtn}
+                aria-label="Log out of your account"
+              >
+                Logout
+              </button>
+            </div>
+          ) : (
+            <NavLink 
+              to="/login" 
+              className={styles.loginBtn}
+              role="button"
+            >
+              Login
+            </NavLink>
+          )}
         </nav>
 
         {/* Mobile Hamburger Trigger */}
@@ -114,6 +140,30 @@ const Navbar = () => {
         >
           My Appointments
         </NavLink>
+
+        {user ? (
+          <div className={styles.mobileUserSection}>
+            <span className={styles.mobileGreeting}>
+              Logged in as: <span>{user.name}</span>
+            </span>
+            <button 
+              type="button" 
+              onClick={() => { logout(); closeMenu(); }} 
+              className={styles.mobileLogoutBtn}
+            >
+              Logout
+            </button>
+          </div>
+        ) : (
+          <NavLink 
+            to="/login" 
+            onClick={closeMenu}
+            className={({ isActive }) => `${styles.mobileNavLink} ${isActive ? styles.mobileNavLinkActive : ''}`}
+            style={{ borderBottom: 'none' }}
+          >
+            Login / Signup
+          </NavLink>
+        )}
       </nav>
     </header>
   );

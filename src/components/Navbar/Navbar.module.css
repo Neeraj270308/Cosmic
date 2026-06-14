@@ -146,3 +146,107 @@
     display: block; /* Show hamburger trigger */
   }
 }
+
+/* Auth Specific Navbar Styles */
+.userSection {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-left: 0.5rem;
+}
+
+.userGreeting {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  border-right: 1px solid var(--border-color);
+  padding-right: 0.75rem;
+}
+
+.userGreeting span {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.logoutBtn {
+  font-family: var(--font-family);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent-red);
+  background: transparent;
+  border: 1px solid var(--accent-red);
+  border-radius: var(--radius-sm);
+  padding: 0.35rem 0.75rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all var(--transition-fast);
+}
+
+.logoutBtn:hover {
+  background-color: var(--accent-red);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-red-glow);
+}
+
+.loginBtn {
+  font-family: var(--font-family);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  background: var(--accent-red);
+  border: 1px solid var(--accent-red);
+  border-radius: var(--radius-sm);
+  padding: 0.35rem 0.85rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all var(--transition-fast);
+  margin-left: 0.5rem;
+}
+
+.loginBtn:hover {
+  background-color: var(--accent-red-hover);
+  border-color: var(--accent-red-hover);
+  box-shadow: var(--shadow-red-glow);
+}
+
+/* Mobile Auth Section */
+.mobileUserSection {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--border-color);
+}
+
+.mobileGreeting {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.mobileGreeting span {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.mobileLogoutBtn {
+  font-family: var(--font-family);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  background: var(--accent-red);
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  text-align: center;
+  text-transform: uppercase;
+  transition: background-color var(--transition-fast);
+}
+
+.mobileLogoutBtn:hover {
+  background-color: var(--accent-red-hover);
+}
+
